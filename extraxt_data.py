@@ -2,30 +2,30 @@
 
 import csv
 
-def get_x(data):
+import matplotlib.pyplot as plt
+
+
+def get_coord(data, index):
     x_coords = []
 
     for line in data:
-        x = line[7]
+        x = line[index]
         x_coords.append(x)
 
     return x_coords
 
-def get_y(data):
-    y_coords = []
-
-    for line in data:
-        y = line[8]
-        y_coords.append(y)
-
-    return y_coords
-
 
 def main():
     file_data = csv.reader(open("data.csv"))
+    x_coord = get_coord(file_data, 7)
+    
+    file_data = csv.reader(open("data.csv"))
+    y_coord = get_coord(file_data, 8)
 
-    print(get_x(file_data))
-    print(get_y(file_data))
+    for i in range(0,len(x_coord)):
+        print(f"x: {x_coord[i]}, y: {y_coord[i]}")
+    
+    plt.plot()
 
 if __name__ == "__main__":
     main()
