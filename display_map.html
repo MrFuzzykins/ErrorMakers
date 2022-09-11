@@ -1,0 +1,92 @@
+<html>
+    <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {
+        'packages': ['map'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyDX5Ur-yzqoGk7edWZ6YLbrr2ofIYwAl3k'
+        });
+        google.charts.setOnLoadCallback(drawMap);
+
+        function drawMap() {
+            var data = google.visualization.arrayToDataTable([
+                ['Lat', 'Long', 'Name', 'Marker'],
+                [-27.4791797679999, 152.979591307, 'Anzac Park', 'regular'],
+                [-27.432260712, 153.03682142, 'Windsor Park', 'regular'],
+                [-27.481268708, 153.04869113, 'Real Park', 'regular'],
+                [-27.632731856, 153.053783369, 'Honeysuckle Way Park', 'regular'],
+                [-27.5850792319999, 153.056931863, 'Les Atkinson Park', 'vandal'],
+                [-27.412216606, 152.941561337, 'Keperra Picnic Ground Park', 'regular'],
+                [-27.500245708, 152.960469321, 'Clarina Street Park', 'regular'],
+                [-27.390721846, 153.005133848, 'Grey Gum Park', 'dog'],
+                [-27.479449415, 152.971284, 'Mt Coot-Tha Botanic Garden', 'regular'],
+                [-27.477730402, 152.978243664, 'Mt Coot-Tha Botanic Garden', 'disabled'],
+                [-27.5747534619999, 153.075569288, 'Yimbun Park', 'dog'],
+                [-27.585672045, 153.026058906, 'C.A.O Sullivan Park', 'disabled'],
+                [-27.515890381, 153.064773407, 'W. J. Scott Park', 'regular'],
+                [-27.4495768209999, 153.082757641, 'Colmslie Reserve', 'regular'],
+                [-27.410518908, 153.006855529, 'Roy Harvey Park', 'regular'],
+                [-27.5475445939999, 153.038060586, 'Salisbury Recreation Reserve', 'regular'],
+                [-27.5626007129999, 152.893784448, 'Booker Place Park', 'regular'],
+                [-27.4577183499999, 153.147012141, 'Kianawah Road Park (No.330)', 'regular'],
+                [-27.5381961219999, 152.929551503, 'Mt Ommaney Bushland Reserve', 'dog'],
+                [-27.446596483, 153.183553944, 'George Clayton Park', 'regular'],
+                [-27.428908974, 153.004422141, 'Sedgley Park', 'dog'],
+                [-27.41719696, 152.977876875, 'Sid Loder Park', 'regular'],
+                [-27.428938979, 153.004435453, 'Sedgley Park', 'regular'],
+                [-27.404471804, 152.980197464, 'Teralba Park', 'regular'],
+                [-27.5158451849999, 153.058182199, 'C.B.Mott Park', 'regular'],
+                [-27.4891714999999, 153.05843413, 'Wembley Park', 'regular'] 
+            ]);
+            
+            var url = 'https://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/';
+
+            var options = {
+                mapType: 'styledMap',
+                showTooltip: true,
+                showInfoWindow: true,
+                useMapTypeControl: false,
+                maps: {
+                    styledMap: {
+                        name: 'Custom Map',
+                        styles: [
+                        {featureType: 'poi.attraction',
+                        stylers: [{color: '#fce8b2'}]
+                        },
+                        {featureType: 'road.highway',
+                        stylers: [{hue: '#0277bd'}, {saturation: -50}]
+                        },
+                        {featureType: 'road.highway',
+                        elementType: 'labels.icon',
+                        stylers: [{hue: '#000'}, {saturation: 100}, {lightness: 50}]
+                        },
+                        {featureType: 'landscape',
+                        stylers: [{hue: '#259b24'}, {saturation: 10}, {lightness: -22}]
+                        } ]
+                    }
+                },
+
+                icons: {
+                    regular: {
+                        normal:   url + 'Map-Marker-Ball-Azure-icon.png',
+                        selected: url + 'Map-Marker-Ball-Right-Azure-icon.png'
+                    },
+                    disabled: {
+                        normal:   url + 'Map-Marker-Push-Pin-1-Chartreuse-icon.png',
+                        selected: url + 'Map-Marker-Push-Pin-1-Right-Chartreuse-icon.png'
+                    }
+                }                
+            };
+
+            var map = new google.visualization.Map(document.getElementById('chart_div'));
+
+            map.draw(data, options);
+        };
+    </script>
+    </head>
+    <body>
+        <div id="chart_div"></div>
+    </body>
+</html>
